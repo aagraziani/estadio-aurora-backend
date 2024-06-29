@@ -56,7 +56,7 @@ def create_table_tareas():
         CREATE TABLE IF NOT EXISTS Tareas (
             id SERIAL PRIMARY KEY,
             nombre VARCHAR(50) NOT NULL,
-            fecha VARCHAR(50) NOT NULL,
+            fecha DATE NOT NULL,
             genero VARCHAR(50) NOT NULL,
             foto VARCHAR(50) NOT NULL,
         );
