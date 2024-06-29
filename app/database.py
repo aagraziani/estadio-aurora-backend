@@ -1,6 +1,5 @@
 import os
 import psycopg2
-from flask import Flask
 from flask import g
 from dotenv import load_dotenv
 
@@ -9,11 +8,11 @@ load_dotenv()
 
 # Configuración de la base de datos usando variables de entorno
 DATABASE_CONFIG = {
-    'user': os.getenv('DB_USERNAME'),
-    'password': os.getenv('DB_PASSWORD'),
-    'host': os.getenv('DB_HOST'),
-    'database': os.getenv('DB_DATABASE'),
-    'port': os.getenv('DB_PORT', 5432)
+    'user': os.getenv('DB_USERNAME'),        
+    'password': os.getenv('DB_PASSWORD'),     
+    'host': os.getenv('DB_HOST'),            
+    'database': os.getenv('DB_NAME'),        
+    'port': os.getenv('DB_PORT', 5432)        
 }
 
 # Función para obtener la conexión a la base de datos
@@ -55,10 +54,10 @@ def create_table_tareas():
         """
         CREATE TABLE IF NOT EXISTS Tareas (
             id SERIAL PRIMARY KEY,
-            nombre VARCHAR(50) NOT NULL,
-            fecha DATE NOT NULL,
+            nombre VARCHAR(300) NOT NULL,
             genero VARCHAR(50) NOT NULL,
-            foto VARCHAR(50) NOT NULL,
+            fecha_creacion DATE NOT NULL,
+            fecha VARCHAR(50) NOT NULL
         );
         """
     )
@@ -66,3 +65,4 @@ def create_table_tareas():
    
     cur.close()
     conn.close()
+
