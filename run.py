@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Rutas de API-Rest
-app.route('/', methods=['GET'])(index)
+app.route('/api/tasks/get_all', methods=['GET'])(get_all)
 
 # CRUD
 app.route('/api/tasks/create/', methods=['POST'])(create_task)

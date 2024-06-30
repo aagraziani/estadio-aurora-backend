@@ -9,6 +9,28 @@ class Task:
         self.fecha = fecha
         self.foto = foto
 
+
+    @staticmethod
+    def get_all():
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM Tareas")
+        rows = cursor.fetchall()
+
+        tasks = []
+        for row in rows:
+            tasks.append(
+                Task(
+                    id_task=row[0],
+                    nombre=row[1],
+                    genero=row[2],
+                    fecha=row[3],
+                    foto=row[4],
+                )
+            )
+        cursor.close()
+        return tasks
+
     @staticmethod
     def __get_tasks_by_query(query):
         db = get_db()

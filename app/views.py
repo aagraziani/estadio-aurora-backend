@@ -10,6 +10,11 @@ def index():
         }
     )
 
+def get_all():
+    tasks = Task.get_all()
+    print(tasks)
+    return jsonify([task.serialize() for task in tasks])
+
 def get_task(task_id):
     task = Task.get_by_id(task_id)
     if not task:
