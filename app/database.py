@@ -56,8 +56,8 @@ def create_table_tareas():
             id SERIAL PRIMARY KEY,
             nombre VARCHAR(300) NOT NULL,
             genero VARCHAR(50) NOT NULL,
-            fecha_creacion DATE NOT NULL,
-            fecha VARCHAR(50) NOT NULL
+            fecha VARCHAR(50) NOT NULL,
+            foto VARCHAR(300) NOT NULL
         );
         """
     )
