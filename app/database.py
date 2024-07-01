@@ -52,7 +52,7 @@ def create_table_tareas():
     cur = conn.cursor()
     cur.execute(
         """
-        CREATE TABLE IF NOT EXISTS Tareas (
+        CREATE TABLE IF NOT EXISTS Bandas (
             id SERIAL PRIMARY KEY,
             nombre VARCHAR(300) NOT NULL,
             genero VARCHAR(50) NOT NULL,

@@ -1,7 +1,7 @@
 from app.database import get_db
 
 
-class Task:
+class Banda:
     def __init__(self, id_task=None, nombre=None, genero=None, fecha=None, foto=None):
         self.id_task = id_task
         self.nombre = nombre
@@ -14,13 +14,13 @@ class Task:
     def get_all():
         db = get_db()
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM Tareas")
+        cursor.execute("SELECT * FROM Bandas")
         rows = cursor.fetchall()
 
-        tasks = []
+        bands = []
         for row in rows:
-            tasks.append(
-                Task(
+            bands.append(
+                Banda(
                     id_task=row[0],
                     nombre=row[1],
                     genero=row[2],
@@ -29,7 +29,7 @@ class Task:
                 )
             )
         cursor.close()
-        return tasks
+        return bands
 
     @staticmethod
     def __get_tasks_by_query(query):
@@ -38,10 +38,10 @@ class Task:
         cursor.execute(query)
         rows = cursor.fetchall()
 
-        tasks = []
+        bands = []
         for row in rows:
-            tasks.append(
-                Task(
+            bands.append(
+                Banda(
                     id_task=row[0],
                     nombre=row[1],
                     genero=row[2],
@@ -50,19 +50,19 @@ class Task:
                 )
             )
         cursor.close()
-        return tasks
+        return bands
 
     @staticmethod
     def get_by_id(id_task):
         db = get_db()
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM Tareas WHERE id = %s", (id_task,))
+        cursor.execute("SELECT * FROM Bandas WHERE id = %s", (id_task,))
 
         row = cursor.fetchone()
         cursor.close()
 
         if row:
-            return Task(
+            return Banda(
                 id_task=row[0],
                 nombre=row[1],
                 genero=row[2],
@@ -77,7 +77,7 @@ class Task:
         if self.id_task:  # Actualizar Tarea existente
             cursor.execute(
                 """
-                UPDATE tareas
+                UPDATE Bandas
                 SET nombre = %s, genero = %s, fecha = %s, foto = %s,
                 WHERE id = %s
                 """,
@@ -86,7 +86,7 @@ class Task:
         else:  # Crear Tarea nueva
             cursor.execute(
                 """
-                INSERT INTO tareas
+                INSERT INTO Bandas
                 (nombre, genero, fecha, foto)
                 VALUES (%s, %s, %s, %s)
                 """,

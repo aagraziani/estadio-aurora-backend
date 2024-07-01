@@ -10,10 +10,11 @@ app = Flask(__name__)
 CORS(app)
 
 # Rutas de API-Rest
-app.route('/api/tasks/get_all', methods=['GET'])(get_all)
+app.route('/api/bands/get_all', methods=['GET'])(get_all)
 
 # CRUD
-app.route('/api/tasks/create/', methods=['POST'])(create_task)
+app.route('/api/bands/create/', methods=['POST'])(create_band)
+app.route('/api/bands/fetch/<int:task_id>', methods=['GET'])(get_band)
 
 create_table_tareas()
 

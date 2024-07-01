@@ -1,5 +1,5 @@
 from flask import jsonify, request
-from app.models import Task
+from app.models import Banda
 
 from datetime import date
 
@@ -11,24 +11,24 @@ def index():
     )
 
 def get_all():
-    tasks = Task.get_all()
-    print(tasks)
-    return jsonify([task.serialize() for task in tasks])
+    bands = Banda.get_all()
+    print(bands)
+    return jsonify([band.serialize() for band in bands])
 
-def get_task(task_id):
-    task = Task.get_by_id(task_id)
-    if not task:
+def get_band(task_id):
+    band = Banda.get_by_id(task_id)
+    if not band:
         return jsonify({'message': 'Task not found'}), 404
-    return jsonify(task.serialize())
+    return jsonify(band.serialize())
 
-def create_task():
+def create_band():
     data = request.json
-    new_task = Task(
+    new_band = Banda(
         nombre=data['nombre'],
         genero = data['genero'],
         fecha = data['fecha'],
         foto= data['foto']
     )
-    new_task.save()
-    return jsonify({'message': 'Task created successfully'}), 201
+    new_band.save()
+    return jsonify({'message': 'Band created successfully'}), 201
 
