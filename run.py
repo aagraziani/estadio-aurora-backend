@@ -14,7 +14,7 @@ app.route('/api/bands/get_all', methods=['GET'])(get_all)
 
 # CRUD
 app.route('/api/bands/create/', methods=['POST'])(create_band)
-app.route('/api/bands/fetch/<int:task_id>', methods=['GET'])(get_band)
+app.route('/api/bands/delete/<int:id_band>', methods=['DELETE'])(delete_band)
 
 create_table_tareas()
 
